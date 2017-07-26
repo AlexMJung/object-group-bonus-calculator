@@ -8,5 +8,15 @@ var mayella = { name: "Mayella", employeeNumber: "89068", annualSalary: "35000",
 var employees = [ atticus, jem, boo, scout, robert, mayella ];
 
 // YOU SHOULD NOT NEED TO CHANGE ANYTHING ABOVE THIS POINT
+ function bonusCalc(arr) {
+    for(i = 0; i < arr.length; i ++){
+        var employee = employees[i]
+        var bonus = 0
+        if (employee.reviewRating === 5){
+            bonus = employee.annualSalary * 0.10
+            return bonus
+        }
+    }
 
+ }
 console.log(employees);
