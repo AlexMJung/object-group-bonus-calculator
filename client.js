@@ -8,61 +8,53 @@ var mayella = { name: "Mayella", employeeNumber: "89068", annualSalary: "35000",
 var employees = [ atticus, jem, boo, scout, robert, mayella ];
 
 // YOU SHOULD NOT NEED TO CHANGE ANYTHING ABOVE THIS POINT
-var soupOrNoSoup = []; 
+ var soupOrNoSoup = []; 
+function Wage(name, bonusPercentage, totalComp, totalBonus) {
+            this.name = name;
+            this.bonusPercentage = bonusPercentage;
+            this.totalComp = totalComp;
+            this.totalBonus = totalBonus;
+        }
+            
 function bonusCalc(arr) {
-     
+    
     for(i = 0; i < arr.length; i ++){
         var employee = employees[i]
-        var name = employee.name
-        var bonus = employee.annualSalary * bonusPercentage;
-        var totalComp = bonus + employee.annualSalary;
+       
         var bonusPercentage = 0;
-        function eNum(num){
-            if(num.length === 4) {
-                bonusPercentage += 0.05;
-            }
-        }
-        function dedSal(sal){
-            if(sal >= 65,000){
-                bonusPercentage -= 0.01;
-            }//end of if
-        }
-        function bonMax(bonusPercentage){
-            if(bonusPrecentage >= 0.13){
-                bonusPrecentage = 0.13;
-            }
-        }
+    
         if (employee.reviewRating === 5){
             bonusPercentage = 0.10
-                eNum(employee.employeeNumber);
-                dedSal(employee.annualSalary);
-                bonMax(bonusPercentage);
-            return bonus
         }
         else if (employee.reviewRating === 4) {
             bonusPercentage = 0.06;
-            eNum(employee.employeeNumber);
-                dedSal(employee.annualSalary);
-                bonMax(this.bonusPercentage);
-            
-            return bonus;
         }
         else if (employee.reviewRating === 3) {
             bonusPercentage = 0.04;
-            eNum(employee.employeeNumber);
-                dedSal(employee.annualSalary);
-                bonMax(this.bonusPercentage);
-            
-            return bonus;
         }
         else {
-            eNum(employee.employeeNumber);
-                dedSal(employee.annualSalary);
-                bonMax(this.bonusPercentage);
-            
-            bonus = "No soup for YOU!!!";
+            bonusPercentage = 0;
+        };//end of if else
+        
+        if(employee.employeeNumber.length === 4) {
+            bonusPercentage += 0.05;
+        };//end of if
+        
+        if(employee.annualSalary > 65,000){
+            bonusPercentage -= 0.01;
+        };//end of if
+        if(bonusPercentage >= 0.13){
+        bonusPercentage = 0.13;
         }
-    }
+        else if(bonusPercentage < 0){
+            bonusPercentage = 0;
+        }//end of else if
+        var name = employee.name
+        var bonus = Math.round(employee.annualSalary * bonusPercentage);
+        var totalComp = bonus + parseInt(employee.annualSalary);
 
- }
-console.log(bonusCalc(soupOrNoSoup));
+          console.log(new Wage(name, bonusPercentage, totalComp, bonus));
+    }
+}
+
+bonusCalc(employees);
